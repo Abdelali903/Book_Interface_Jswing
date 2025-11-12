@@ -4,9 +4,9 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 
-public class mainPage {
+public class MainPage {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(mainPage::createAndShow);
+        SwingUtilities.invokeLater(MainPage::createAndShow);
     }
 
     private static void createAndShow() {
@@ -28,7 +28,7 @@ public class mainPage {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose();
-                mainPage.main(new String[]{});
+                MainPage.main(new String[]{});
             }
         });
         nav.add(logo, BorderLayout.WEST);
@@ -61,11 +61,11 @@ public class mainPage {
                 switch (item) {
                     case "HOME":
                         frame.dispose();
-                        mainPage.main(new String[]{});
+                        MainPage.main(new String[]{});
                         break;
                     case "BOOKS":
                         frame.dispose();
-                        productPage.main(new String[]{});
+                        BooksCategory.main(new String[]{});
                         break;
                     case "NEW RELEASE":
                         JOptionPane.showMessageDialog(frame, "New Release section coming soon!");
@@ -156,7 +156,7 @@ public class mainPage {
         readMore.setIconTextGap(8);
         readMore.addActionListener(e -> {
             frame.dispose();
-            productPage.main(new String[]{});
+            BooksCategory.main(new String[]{});
         });
 
         left.add(Box.createVerticalStrut(10));
@@ -194,7 +194,7 @@ public class mainPage {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose();
-                productPage.main(new String[]{});
+                BooksCategory.main(new String[]{});
             }
         });
         
@@ -212,7 +212,7 @@ public class mainPage {
     }
 
     private static ImageIcon loadIcon(String path) {
-        java.net.URL url = mainPage.class.getResource(path.startsWith("/") ? path : "/" + path);
+        java.net.URL url = MainPage.class.getResource(path.startsWith("/") ? path : "/" + path);
         if (url != null) return new ImageIcon(url);
         java.io.File f = new java.io.File(path);
         if (f.exists()) return new ImageIcon(path);

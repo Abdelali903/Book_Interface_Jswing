@@ -6,9 +6,9 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Arrays;
 
-public class productPage {
+public class BooksCategory {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(productPage::createAndShow);
+        SwingUtilities.invokeLater(BooksCategory::createAndShow);
     }
 
     private static void createAndShow() {
@@ -38,7 +38,7 @@ public class productPage {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose();
-                mainPage.main(new String[]{});
+                MainPage.main(new String[]{});
             }
         });
         nav.add(logo, BorderLayout.WEST);
@@ -81,11 +81,11 @@ public class productPage {
                 switch (item) {
                     case "HOME":
                         frame.dispose();
-                        mainPage.main(new String[]{});
+                        MainPage.main(new String[]{});
                         break;
                     case "BOOKS":
                         frame.dispose();
-                        productPage.main(new String[]{});
+                        BooksCategory.main(new String[]{});
                         break;
                     case "NEW RELEASE":
                         JOptionPane.showMessageDialog(frame, "New Release section coming soon!");
@@ -208,7 +208,7 @@ public class productPage {
         // click on Buy Now button -> open productDisplay page
         buy.addActionListener(e -> {
             frame.dispose();
-            productDisplay.main(new String[]{});
+            ProductDisplay.main(new String[]{});
         });
         bottom.add(buy);
 
@@ -219,7 +219,7 @@ public class productPage {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose();
-                productDisplay.main(new String[]{});
+                ProductDisplay.main(new String[]{});
             }
         });
 
@@ -228,7 +228,7 @@ public class productPage {
 
     // small helper to load from classpath or filesystem and fallback to 1x1 transparent
     private static ImageIcon loadIcon(String path) {
-        java.net.URL url = productPage.class.getResource(path.startsWith("/") ? path : "/" + path);
+        java.net.URL url = BooksCategory.class.getResource(path.startsWith("/") ? path : "/" + path);
         if (url != null) return new ImageIcon(url);
         java.io.File f = new java.io.File(path);
         if (f.exists()) return new ImageIcon(path);
