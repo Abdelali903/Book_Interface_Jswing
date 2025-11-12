@@ -4,16 +4,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class productDisplay {
+public class ProductDisplay {
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(productDisplay::createAndShow);
+        SwingUtilities.invokeLater(ProductDisplay::createAndShow);
     }
 
     private static void createAndShow() {
         final JFrame frame = new JFrame("BOOKVERSE - Product");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1100, 650); // match mainPage
+        frame.setSize(1100, 650); // match MainPage
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
 
@@ -36,7 +36,7 @@ public class productDisplay {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose();
-                mainPage.main(new String[]{});
+                MainPage.main(new String[]{});
             }
         });
         nav.add(logo, BorderLayout.WEST);
@@ -79,11 +79,11 @@ public class productDisplay {
                 switch (item) {
                     case "HOME":
                         frame.dispose();
-                        mainPage.main(new String[]{});
+                        MainPage.main(new String[]{});
                         break;
                     case "BOOKS":
                         frame.dispose();
-                        productDisplay.main(new String[]{});
+                        BooksCategory.main(new String[]{}); // changed: open BooksCategory
                         break;
                     case "NEW RELEASE":
                         JOptionPane.showMessageDialog(frame, "New Release section coming soon!");
@@ -274,7 +274,7 @@ public class productDisplay {
     }
 
     private static ImageIcon loadIcon(String path) {
-        java.net.URL url = productDisplay.class.getResource(path.startsWith("/") ? path : "/" + path);
+        java.net.URL url = ProductDisplay.class.getResource(path.startsWith("/") ? path : "/" + path);
         if (url != null) return new ImageIcon(url);
         java.io.File f = new java.io.File(path);
         if (f.exists()) return new ImageIcon(path);
