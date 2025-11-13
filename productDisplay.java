@@ -5,7 +5,6 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class ProductDisplay {
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(ProductDisplay::createAndShow);
     }
@@ -13,19 +12,21 @@ public class ProductDisplay {
     private static void createAndShow() {
         final JFrame frame = new JFrame("BOOKVERSE - Product");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1100, 650); // match MainPage
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setSize(1100, 650); 
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
 
         frame.add(createNavBar(frame), BorderLayout.NORTH);
         frame.add(createMainPanel(), BorderLayout.CENTER);
+        
 
         frame.setVisible(true);
     }
 
     private static JPanel createNavBar(final JFrame frame) {
         JPanel nav = new JPanel(new BorderLayout());
-        nav.setBackground(new Color(180, 140, 200)); // same theme
+        nav.setBackground(new Color(180, 140, 200)); 
         nav.setBorder(BorderFactory.createEmptyBorder(10, 16, 10, 10));
 
         JLabel logo = new JLabel("📖 BOOKVERSE");
@@ -83,13 +84,15 @@ public class ProductDisplay {
                         break;
                     case "BOOKS":
                         frame.dispose();
-                        BooksCategory.main(new String[]{}); // changed: open BooksCategory
+                        BooksCategory.main(new String[]{});
                         break;
                     case "NEW RELEASE":
-                        JOptionPane.showMessageDialog(frame, "New Release section coming soon!");
+                        frame.dispose();
+                        NewRelease.main(new String[]{});
                         break;
                     case "CONTACT US":
-                        JOptionPane.showMessageDialog(frame, "Contact: info@bookverse.com\nPhone: +213 123 456 789");
+                        frame.dispose();
+                        ContactUS.main(new String[]{});
                         break;
                 }
             });
@@ -102,8 +105,8 @@ public class ProductDisplay {
         java.util.function.Function<String, ImageIcon> resizeIcon = p -> scaleIconSafe(loadIcon(p), 24, 24);
         for (String icon : new String[]{"facebook.png", "instagram.png", "linkedin.png", "search.png"}) {
             JLabel l = new JLabel(resizeIcon.apply(icon));
+            // keep pointer cursor, remove scaling on hover
             l.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            l.addMouseListener(new HoverScaleAdapter(l, 24, 28));
             iconPanel.add(l);
         }
         nav.add(iconPanel, BorderLayout.EAST);
@@ -125,24 +128,22 @@ public class ProductDisplay {
         left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
         left.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        ImageIcon raw = loadIcon("book.png");
+        ImageIcon raw = loadIcon("islamic/Aquidat_Tawhid.jpg");
         ImageIcon cover = scaleIconSafe(raw, 380, 520);
         JLabel coverLabel = new JLabel(cover);
-        coverLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        coverLabel.addMouseListener(new HoverScaleAdapter(coverLabel, 380, 420));
+        // remove hover scaling; keep pointer cursor only
+        coverLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         left.add(coverLabel);
         left.add(Box.createVerticalStrut(12));
 
-        JLabel title = new JLabel("Calculus Made Clear");
+        JLabel title = new JLabel("Aquidat Al Tawhid");
         title.setFont(new Font("Serif", Font.BOLD, 22));
         title.setForeground(new Color(60, 0, 90));
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
         left.add(title);
 
-        JLabel author = new JLabel("by A. Mathematician");
+        JLabel author = new JLabel("by Dr. Saleh El fawzan");
         author.setFont(new Font("SansSerif", Font.PLAIN, 14));
         author.setForeground(new Color(70, 70, 90));
-        author.setAlignmentX(Component.CENTER_ALIGNMENT);
         left.add(author);
 
         gbc.gridx = 0;
@@ -168,19 +169,19 @@ public class ProductDisplay {
                 BorderFactory.createEmptyBorder(16, 16, 16, 16)
         ));
 
-        JLabel lblTitle = new JLabel("Calculus Made Clear");
+        JLabel lblTitle = new JLabel("Aquidat Al Tawhid");
         lblTitle.setFont(new Font("Serif", Font.BOLD, 20));
         lblTitle.setForeground(new Color(60, 0, 90));
         card.add(lblTitle);
-
         card.add(Box.createVerticalStrut(8));
-        JLabel lblSeries = new JLabel("Mathematics Series • 3rd Edition");
+
+        JLabel lblSeries = new JLabel(" • 3rd Edition");
         lblSeries.setFont(new Font("SansSerif", Font.PLAIN, 13));
         lblSeries.setForeground(new Color(100, 100, 120));
         card.add(lblSeries);
 
         card.add(Box.createVerticalStrut(12));
-        JTextArea desc = new JTextArea("This book covers fundamental concepts of calculus with clear examples and exercises. Suitable for university students and self-learners.");
+        JTextArea desc = new JTextArea("Aquidat El Tawhid is a comprehensive guide to understanding the concept of monotheism in Islam. Written by Dr. Saleh El Fawzan, this book delves into the theological foundations of Tawhid, exploring its significance in the life of a Muslim. With clear explanations and insightful commentary, it serves as an essential resource for anyone seeking to deepen their knowledge of Islamic beliefs.");
         desc.setLineWrap(true);
         desc.setWrapStyleWord(true);
         desc.setEditable(false);
@@ -188,9 +189,9 @@ public class ProductDisplay {
         desc.setFont(new Font("SansSerif", Font.PLAIN, 14));
         desc.setForeground(new Color(70, 70, 90));
         card.add(desc);
-
         card.add(Box.createVerticalStrut(14));
-        JLabel price = new JLabel("7850 DA");
+
+        JLabel price = new JLabel("1200 DA");
         price.setFont(new Font("SansSerif", Font.BOLD, 20));
         price.setForeground(new Color(120, 0, 180));
         card.add(price);
@@ -199,25 +200,24 @@ public class ProductDisplay {
         JPanel btnRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
         btnRow.setOpaque(false);
 
-        JButton buyPDF = styledPrimaryButton("Acheter PDF");
-        JButton buyEPUB = styledSecondaryButton("Acheter EPUB");
+        JButton buy = styledPrimaryButton("Acheter ");
+        JButton buyPdf = styledSecondaryButton("Acheter PDF");
         JButton share = styledSecondaryButton("🔗 Partager");
 
-        btnRow.add(buyPDF);
-        btnRow.add(buyEPUB);
+      btnRow.add(buy);
+        btnRow.add(buyPdf);
         btnRow.add(share);
         card.add(btnRow);
 
         card.add(Box.createVerticalStrut(12));
         JPanel categories = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 6));
         categories.setOpaque(false);
-        categories.add(categoryChip("Jeunesse"));
-        categories.add(categoryChip("Aventure"));
+        categories.add(categoryChip("Religion"));
+        categories.add(categoryChip("Islam"));
+        categories.add(categoryChip("Aquidah"));
         categories.add(categoryChip("Education"));
-        categories.add(categoryChip("Serie"));
         card.add(categories);
-
-        // Note
+        
         card.add(Box.createVerticalStrut(12));
         JLabel note = new JLabel("<html><small>Après l'achat, le lien de téléchargement sera envoyé par email. Vérifiez l'orthographe de l'email.</small></html>");
         note.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -226,7 +226,6 @@ public class ProductDisplay {
 
         r.gridy = 0;
         right.add(card, r);
-
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.weightx = 0.55;
@@ -284,48 +283,10 @@ public class ProductDisplay {
     }
 
     private static ImageIcon scaleIconSafe(ImageIcon icon, int w, int h) {
-        if (icon == null) icon = new ImageIcon(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB));
-        int iw = icon.getIconWidth(), ih = icon.getIconHeight();
-        if (iw <= 0 || ih <= 0) {
-            BufferedImage buf = new BufferedImage(Math.max(1, w), Math.max(1, h), BufferedImage.TYPE_INT_ARGB);
-            return new ImageIcon(buf);
+        if (icon == null || icon.getIconWidth() <= 0) {
+            return new ImageIcon(new BufferedImage(Math.max(1, w), Math.max(1, h), BufferedImage.TYPE_INT_ARGB));
         }
         Image img = icon.getImage().getScaledInstance(Math.max(1, w), Math.max(1, h), Image.SCALE_SMOOTH);
         return new ImageIcon(img);
-    }
-
-    private static class HoverScaleAdapter extends MouseAdapter {
-        private final JLabel label;
-        private final int normalW, hoverW;
-
-        HoverScaleAdapter(JLabel label, int normalW, int hoverW) {
-            this.label = label;
-            this.normalW = normalW;
-            this.hoverW = hoverW;
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            Icon ic = label.getIcon();
-            if (ic instanceof ImageIcon) {
-                Image img = ((ImageIcon) ic).getImage();
-                int h = (int) (hoverW * ((double) img.getHeight(null) / Math.max(1, img.getWidth(null))));
-                Image scaled = img.getScaledInstance(hoverW, h, Image.SCALE_SMOOTH);
-                label.setIcon(new ImageIcon(scaled));
-            }
-            label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-            Icon ic = label.getIcon();
-            if (ic instanceof ImageIcon) {
-                Image img = ((ImageIcon) ic).getImage();
-                int h = (int) (normalW * ((double) img.getHeight(null) / Math.max(1, img.getWidth(null))));
-                Image scaled = img.getScaledInstance(normalW, h, Image.SCALE_SMOOTH);
-                label.setIcon(new ImageIcon(scaled));
-            }
-            label.setCursor(Cursor.getDefaultCursor());
-        }
     }
 }
