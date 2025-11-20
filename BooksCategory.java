@@ -102,20 +102,41 @@ public class BooksCategory {
         grid.setOpaque(false);
         grid.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        String[] categories = {"Islamic ", "Algorithm ", "Mathematics", "Physics", "Chemistry","E-commerce"};
+        String[] categories = {"☪  Islamic ", "💻  Algorithm ", "🔢  Mathematics", "⚛  Physics", "🔬 Chemistry","💰  E-commerce"};
 
         for (String cat : categories) {
             JButton btn = new JButton(cat);
-            btn.setFont(new Font("SansSerif", Font.BOLD, 25));
+            btn.setFont(new Font("SansSerif", Font.BOLD, 50));
             btn.setForeground(new Color(60, 0, 90));
             btn.setBackground(new Color(245, 230, 255));
             btn.setFocusPainted(false);
             btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             btn.addActionListener(e -> {
-                if ("Islamic ".equals(cat)) {
+                if ("☪  Islamic ".equals(cat)) {
                     frame.dispose();
                     IslamicBooks.main(new String[]{});
-                } else {
+                } 
+                else if ("💻  Algorithm ".equals(cat)) {
+                    frame.dispose();
+                    AlgoBooks.main(new String[]{});
+                }
+                else if ("🔢  Mathematics".equals(cat)) {
+                    frame.dispose();
+                    MathBooks.main(new String[]{});
+                }
+                else if ("⚛  Physics".equals(cat)) {
+                    frame.dispose();
+                    PhysicsBooks.main(new String[]{});
+                }
+                else if ("🔬 Chemistry".equals(cat)) {
+                    frame.dispose();
+                    ChemistryBooks.main(new String[]{});
+                }
+                else if ("💰  E-commerce".equals(cat)) {
+                    frame.dispose();
+                    ECommerceBooks.main(new String[]{});
+                }
+                else  {
                     JOptionPane.showMessageDialog(frame, "Open: " + cat);
                 }
             });

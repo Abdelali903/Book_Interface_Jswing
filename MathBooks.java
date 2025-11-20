@@ -6,9 +6,9 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Arrays;
 
-public class IslamicBooks{
+public class MathBooks {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(IslamicBooks::createAndShow);
+        SwingUtilities.invokeLater(MathBooks::createAndShow);
     }
 
     private static void createAndShow() {
@@ -68,7 +68,7 @@ public class IslamicBooks{
                         break;
                     case "NEW RELEASE":
                         frame.dispose();
-                        IslamicBooks.main(new String[]{});
+                        MathBooks.main(new String[]{});
                         break;
                     case "CONTACT US":
                         frame.dispose();
@@ -99,12 +99,12 @@ public class IslamicBooks{
         grid.setOpaque(false);
 
         List<Book> sample = Arrays.asList(
-            new Book("Aquidat El Tawhid", "Dr. Saleh El fawzan", "1200 DA", "BooksImg\\ImgIslamic/Aquidat_Tawhid.jpg"),
-            new Book("Oumdat El Tafsir", "Imam Ibn Kathir", "6700DA", "BooksImg\\ImgIslamic/Oumdat_El_Tafsir.jpg"),
-            new Book("El Rahique El Makhtoum", "Imam Moubarkfouri", "2500 DA", "BooksImg\\ImgIslamic/Rahique_Makhtoum.jpg"),
-            new Book("Sahih El Boukhari", "Imame Boukhari", "8000 DA", "BooksImg\\ImgIslamic/Boukhari.jpg"),
-            new Book("Tadim El Salat", "Dr.Abd El Razeque El Badr", "1500 DA", "BooksImg\\ImgIslamic/Tadim_Salat.jpg"),
-            new Book("Moulakhas El Feqhi", "Dr. Saleh El fawzan", "3000 DA", "BooksImg\\ImgIslamic/El_Moulakhas_El_Fequhi.jpg")
+            new Book("Advanced Defferential Equations", "by Youssef N.Raffoul", "700 DA", "BooksImg\\ImgMath/AdvancedDefferentialEquations.jpg"),
+            new Book("Applied Mathematics", "by J.David Logan", "550DA", "BooksImg\\ImgMath/AppliedMathematics.jpg"),
+            new Book("Fundamrntals Of Probability", " by Saeed Ghahramani", "1000 DA", "BooksImg\\ImgMath/FundamrntalsOfProbability.jpg"),
+            new Book("Mastering Algebra", " by Hamilton Education", "900 DA", "BooksImg\\ImgMath/MasteringAlgebra.jpg"),
+            new Book("Pure Mathematics", " by Edware Atkins", "1500 DA", "BooksImg\\ImgMath/PureMathematics.jpg"),
+            new Book("Numerical Analysis", " by S.H.Lui", "3000 DA", "BooksImg\\ImgMath/NumericalAnalysis.jpg")
         );
 
         for (Book b : sample) grid.add(createBookCard(b, frame));
@@ -164,29 +164,29 @@ public class IslamicBooks{
         buy.setBorder(BorderFactory.createEmptyBorder(6, 12, 6, 12));
         buy.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         buy.addActionListener(e -> {
-            if("Aquidat El Tawhid".equals(book.title)) {
+            if("Advanced Defferential Equations".equals(book.title)) {
                 frame.dispose();
-                AquidatElTawhidBook.main(new String[]{});
+                AdvancedDifferentialEquationsBook.main(new String[]{});
             }
-            else if("Sahih El Boukhari".equals(book.title)) {
+            else if("Applied Mathematics".equals(book.title)) {
                 frame.dispose();
-                BoukhariBook.main(new String[]{});
+                AppliedMathematicsBook.main(new String[]{});
             }
-            else if("Oumdat El Tafsir".equals(book.title)) {
+            else if("Fundamrntals Of Probability".equals(book.title)) {
                 frame.dispose();
-                OumdatElTafsirBook.main(new String[]{});
+                FundamrntalsOfProbabilityBook.main(new String[]{});
             }
-            else if("El Rahique El Makhtoum".equals(book.title)) {
+            else if("Mastering Algebra".equals(book.title)) {
                 frame.dispose();
-                RahiqueMakhtoumBook.main(new String[]{});
+                MasteringAlgebraBook.main(new String[]{});
             }
-            else if("Tadim El Salat".equals(book.title)) {
+            else if("Pure Mathematics".equals(book.title)) {
                 frame.dispose();
-                TadimSalatBook.main(new String[]{});
+                PureMathematicsBook.main(new String[]{});
             }
-            else if("Moulakhas El Feqhi".equals(book.title)) {
+            else if("Numerical Analysis".equals(book.title)) {
                 frame.dispose();
-                MoulakhasFeqhiBook.main(new String[]{});
+                NumericalAnalysisBook.main(new String[]{});
             }
             else {
                 frame.dispose();
@@ -201,29 +201,29 @@ public class IslamicBooks{
         card.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if("Aquidat El Tawhid".equals(book.title)) {
+                if("Advanced Defferential Equations".equals(book.title)) {
                     frame.dispose();
-                    AquidatElTawhidBook.main(new String[]{});
+                    AdvancedDifferentialEquationsBook.main(new String[]{});
                 }
-                else if("Sahih El Boukhari".equals(book.title)) {
+                else if("Applied Mathematics".equals(book.title)) {
                     frame.dispose();
-                    BoukhariBook.main(new String[]{});
+                    AppliedMathematicsBook.main(new String[]{});
                 }
-                else if("Oumdat El Tafsir".equals(book.title)) {
+                else if("Fundamrntals Of Probability".equals(book.title)) {
                     frame.dispose();
-                    OumdatElTafsirBook.main(new String[]{});
+                    FundamrntalsOfProbabilityBook.main(new String[]{});
                 }
-                else if("El Rahique El Makhtoum".equals(book.title)) {
+                else if("Mastering Algebra".equals(book.title)) {
                     frame.dispose();
-                    RahiqueMakhtoumBook.main(new String[]{});
+                    MasteringAlgebraBook.main(new String[]{});
                 }
-                else if("Tadim El Salat".equals(book.title)) {
+                else if("Pure Mathematics".equals(book.title)) {
                     frame.dispose();
-                    TadimSalatBook.main(new String[]{});
+                    PureMathematicsBook.main(new String[]{});
                 }
-                else if("Moulakhas El Feqhi".equals(book.title)) {
+                else if("Numerical Analysis".equals(book.title)) {
                     frame.dispose();
-                    MoulakhasFeqhiBook.main(new String[]{});
+                    NumericalAnalysisBook.main(new String[]{});
                 }
                 else {
                     frame.dispose();
@@ -235,7 +235,7 @@ public class IslamicBooks{
     }
 
     private static ImageIcon loadIcon(String path) {
-        java.net.URL url = IslamicBooks.class.getResource(path.startsWith("/") ? path : "/" + path);
+        java.net.URL url = MathBooks.class.getResource(path.startsWith("/") ? path : "/" + path);
         if (url != null) return new ImageIcon(url);
         java.io.File f = new java.io.File(path);
         if (f.exists()) return new ImageIcon(path);

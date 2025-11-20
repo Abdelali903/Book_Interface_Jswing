@@ -165,7 +165,7 @@ public class NewRelease {
         buy.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         buy.addActionListener(e -> {
             frame.dispose();
-            ProductDisplay.main(new String[]{});
+            AquidatElTawhidBook.main(new String[]{});
         });
         bottom.add(buy);
 
@@ -176,7 +176,7 @@ public class NewRelease {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose();
-                ProductDisplay.main(new String[]{});
+                AquidatElTawhidBook.main(new String[]{});
             }
         });
 

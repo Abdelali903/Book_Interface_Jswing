@@ -4,29 +4,28 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class ProductDisplay {
+public class PureMathematicsBook {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(ProductDisplay::createAndShow);
+        SwingUtilities.invokeLater(PureMathematicsBook::createAndShow);
     }
 
     private static void createAndShow() {
         final JFrame frame = new JFrame("BOOKVERSE - Product");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setSize(1100, 650); 
+        frame.setSize(1100, 650);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
 
         frame.add(createNavBar(frame), BorderLayout.NORTH);
         frame.add(createMainPanel(), BorderLayout.CENTER);
-        
 
         frame.setVisible(true);
     }
 
     private static JPanel createNavBar(final JFrame frame) {
         JPanel nav = new JPanel(new BorderLayout());
-        nav.setBackground(new Color(180, 140, 200)); 
+        nav.setBackground(new Color(180, 140, 200));
         nav.setBorder(BorderFactory.createEmptyBorder(10, 16, 10, 10));
 
         JLabel logo = new JLabel("📖 BOOKVERSE");
@@ -54,7 +53,7 @@ public class ProductDisplay {
             btn.setBorderPainted(false);
             btn.setContentAreaFilled(false);
             btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            
+
             if ("BOOKS".equals(item)) {
                 btn.setForeground(Color.WHITE);
                 btn.setBorder(BorderFactory.createCompoundBorder(
@@ -62,7 +61,7 @@ public class ProductDisplay {
                         BorderFactory.createEmptyBorder(4, 6, 2, 6)
                 ));
             }
-            
+
             btn.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
@@ -75,7 +74,7 @@ public class ProductDisplay {
                     btn.setFont(new Font("SansSerif", Font.BOLD, 14));
                 }
             });
-            
+
             btn.addActionListener(e -> {
                 switch (item) {
                     case "HOME":
@@ -105,7 +104,6 @@ public class ProductDisplay {
         java.util.function.Function<String, ImageIcon> resizeIcon = p -> scaleIconSafe(loadIcon(p), 24, 24);
         for (String icon : new String[]{"facebook.png", "instagram.png", "linkedin.png", "search.png"}) {
             JLabel l = new JLabel(resizeIcon.apply(icon));
-            // keep pointer cursor, remove scaling on hover
             l.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             iconPanel.add(l);
         }
@@ -122,26 +120,24 @@ public class ProductDisplay {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weighty = 1;
 
-        // Left: Book image and brief info
         JPanel left = new JPanel();
         left.setOpaque(false);
         left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
         left.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        ImageIcon raw = loadIcon("islamic/Aquidat_Tawhid.jpg");
+        ImageIcon raw = loadIcon("BooksImg\\ImgMath/PureMathematics.jpg");
         ImageIcon cover = scaleIconSafe(raw, 380, 520);
         JLabel coverLabel = new JLabel(cover);
-        // remove hover scaling; keep pointer cursor only
         coverLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         left.add(coverLabel);
         left.add(Box.createVerticalStrut(12));
 
-        JLabel title = new JLabel("Aquidat Al Tawhid");
+        JLabel title = new JLabel("Pure Mathematics");
         title.setFont(new Font("Serif", Font.BOLD, 22));
         title.setForeground(new Color(60, 0, 90));
         left.add(title);
 
-        JLabel author = new JLabel("by Dr. Saleh El fawzan");
+        JLabel author = new JLabel("by Youssef N. Raffoul");
         author.setFont(new Font("SansSerif", Font.PLAIN, 14));
         author.setForeground(new Color(70, 70, 90));
         left.add(author);
@@ -151,7 +147,6 @@ public class ProductDisplay {
         gbc.weightx = 0.45;
         main.add(left, gbc);
 
-        // Right: purchase/options panel
         JPanel right = new JPanel();
         right.setOpaque(false);
         right.setLayout(new GridBagLayout());
@@ -169,19 +164,13 @@ public class ProductDisplay {
                 BorderFactory.createEmptyBorder(16, 16, 16, 16)
         ));
 
-        JLabel lblTitle = new JLabel("Aquidat Al Tawhid");
+        JLabel lblTitle = new JLabel("Pure Mathematics");
         lblTitle.setFont(new Font("Serif", Font.BOLD, 20));
         lblTitle.setForeground(new Color(60, 0, 90));
         card.add(lblTitle);
         card.add(Box.createVerticalStrut(8));
 
-        JLabel lblSeries = new JLabel(" • 3rd Edition");
-        lblSeries.setFont(new Font("SansSerif", Font.PLAIN, 13));
-        lblSeries.setForeground(new Color(100, 100, 120));
-        card.add(lblSeries);
-
-        card.add(Box.createVerticalStrut(12));
-        JTextArea desc = new JTextArea("Aquidat El Tawhid is a comprehensive guide to understanding the concept of monotheism in Islam. Written by Dr. Saleh El Fawzan, this book delves into the theological foundations of Tawhid, exploring its significance in the life of a Muslim. With clear explanations and insightful commentary, it serves as an essential resource for anyone seeking to deepen their knowledge of Islamic beliefs.");
+        JTextArea desc = new JTextArea("This book offers a comprehensive introduction to pure mathematics, covering essential topics such as set theory, logic, number theory, algebra, and real analysis. Designed for undergraduate students, it emphasizes rigorous proofs and theoretical understanding, providing a solid foundation for further study in mathematics. With clear explanations and numerous examples, this text is an invaluable resource for aspiring mathematicians.");
         desc.setLineWrap(true);
         desc.setWrapStyleWord(true);
         desc.setEditable(false);
@@ -191,7 +180,7 @@ public class ProductDisplay {
         card.add(desc);
         card.add(Box.createVerticalStrut(14));
 
-        JLabel price = new JLabel("1200 DA");
+        JLabel price = new JLabel("700 DA");
         price.setFont(new Font("SansSerif", Font.BOLD, 20));
         price.setForeground(new Color(120, 0, 180));
         card.add(price);
@@ -204,20 +193,20 @@ public class ProductDisplay {
         JButton buyPdf = styledSecondaryButton("Acheter PDF");
         JButton share = styledSecondaryButton("🔗 Partager");
 
-      btnRow.add(buy);
+        btnRow.add(buy);
         btnRow.add(buyPdf);
         btnRow.add(share);
         card.add(btnRow);
-
         card.add(Box.createVerticalStrut(12));
+
         JPanel categories = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 6));
         categories.setOpaque(false);
-        categories.add(categoryChip("Religion"));
-        categories.add(categoryChip("Islam"));
-        categories.add(categoryChip("Aquidah"));
+        categories.add(categoryChip("Mathematics"));
+        categories.add(categoryChip("Pure Mathematics"));
+        categories.add(categoryChip("Advanced"));
         categories.add(categoryChip("Education"));
         card.add(categories);
-        
+
         card.add(Box.createVerticalStrut(12));
         JLabel note = new JLabel("<html><small>Après l'achat, le lien de téléchargement sera envoyé par email. Vérifiez l'orthographe de l'email.</small></html>");
         note.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -273,7 +262,7 @@ public class ProductDisplay {
     }
 
     private static ImageIcon loadIcon(String path) {
-        java.net.URL url = ProductDisplay.class.getResource(path.startsWith("/") ? path : "/" + path);
+        java.net.URL url = PureMathematicsBook.class.getResource(path.startsWith("/") ? path : "/" + path);
         if (url != null) return new ImageIcon(url);
         java.io.File f = new java.io.File(path);
         if (f.exists()) return new ImageIcon(path);
