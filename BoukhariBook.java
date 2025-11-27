@@ -175,7 +175,6 @@ public class BoukhariBook {
         card.add(lblTitle);
         card.add(Box.createVerticalStrut(8));
 
-        
         JTextArea desc = new JTextArea("Sahih El Boukhari is one of the most authentic collections of hadiths in Islam, compiled by the renowned scholar Imam Al-Bukhari. This comprehensive work encompasses thousands of sayings and actions of the Prophet Muhammad (peace be upon him), meticulously gathered and verified for authenticity. It serves as a vital source of guidance for Muslims worldwide, offering insights into Islamic teachings, jurisprudence, and moral conduct. Sahih El Boukhari is revered for its rigorous methodology and remains a cornerstone of Islamic scholarship.");
         desc.setLineWrap(true);
         desc.setWrapStyleWord(true);
@@ -190,14 +189,36 @@ public class BoukhariBook {
         price.setFont(new Font("SansSerif", Font.BOLD, 20));
         price.setForeground(new Color(120, 0, 180));
         card.add(price);
-
         card.add(Box.createVerticalStrut(12));
+
+        // Quantity selection
+        JPanel quantityPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
+        quantityPanel.setOpaque(false);
+        quantityPanel.add(new JLabel("Quantité:"));
+        JSpinner quantitySpinner = new JSpinner(new SpinnerNumberModel(1, 1, 10, 1));
+        quantitySpinner.setPreferredSize(new Dimension(60, 25));
+        quantityPanel.add(quantitySpinner);
+        card.add(quantityPanel);
+        card.add(Box.createVerticalStrut(12));
+
         JPanel btnRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
         btnRow.setOpaque(false);
 
         JButton buy = styledPrimaryButton("Acheter ");
         JButton buyPdf = styledSecondaryButton("Acheter PDF");
         JButton share = styledSecondaryButton("🔗 Partager");
+
+        // Add action listener to buy button
+        buy.addActionListener(e -> {
+            int quantity = (Integer) quantitySpinner.getValue();
+            String priceText = price.getText().replace(" DA", "").trim();
+            double unitPrice = Double.parseDouble(priceText);
+            double total = unitPrice * quantity;
+            JOptionPane.showMessageDialog(null,
+                "Total de votre commande: " + String.format("%.0f", total) + " DA\nQuantité: " + quantity,
+                "Confirmation d'achat",
+                JOptionPane.INFORMATION_MESSAGE);
+        });
 
         btnRow.add(buy);
         btnRow.add(buyPdf);

@@ -179,8 +179,8 @@ public class AquidatElTawhidBook {
         lblSeries.setFont(new Font("SansSerif", Font.PLAIN, 13));
         lblSeries.setForeground(new Color(100, 100, 120));
         card.add(lblSeries);
-
         card.add(Box.createVerticalStrut(12));
+
         JTextArea desc = new JTextArea("AquidatElTawhidBook is a comprehensive guide to understanding the concept of monotheism in Islam. Written by Dr. Saleh El Fawzan, this book delves into the theological foundations of Tawhid, exploring its significance in the life of a Muslim. With clear explanations and insightful commentary, it serves as an essential resource for anyone seeking to deepen their knowledge of Islamic beliefs.");
         desc.setLineWrap(true);
         desc.setWrapStyleWord(true);
@@ -195,14 +195,36 @@ public class AquidatElTawhidBook {
         price.setFont(new Font("SansSerif", Font.BOLD, 20));
         price.setForeground(new Color(120, 0, 180));
         card.add(price);
-
         card.add(Box.createVerticalStrut(12));
+
+        // Quantity selection
+        JPanel quantityPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
+        quantityPanel.setOpaque(false);
+        quantityPanel.add(new JLabel("Quantité:"));
+        JSpinner quantitySpinner = new JSpinner(new SpinnerNumberModel(1, 1, 10, 1));
+        quantitySpinner.setPreferredSize(new Dimension(60, 25));
+        quantityPanel.add(quantitySpinner);
+        card.add(quantityPanel);
+        card.add(Box.createVerticalStrut(12));
+
         JPanel btnRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
         btnRow.setOpaque(false);
 
         JButton buy = styledPrimaryButton("Acheter ");
         JButton buyPdf = styledSecondaryButton("Acheter PDF");
         JButton share = styledSecondaryButton("🔗 Partager");
+
+        // Add action listener to buy button
+        buy.addActionListener(e -> {
+            int quantity = (Integer) quantitySpinner.getValue();
+            String priceText = price.getText().replace(" DA", "").trim();
+            double unitPrice = Double.parseDouble(priceText);
+            double total = unitPrice * quantity;
+            JOptionPane.showMessageDialog(null,
+                "Total de votre commande: " + String.format("%.0f", total) + " DA\nQuantité: " + quantity,
+                "Confirmation d'achat",
+                JOptionPane.INFORMATION_MESSAGE);
+        });
 
         btnRow.add(buy);
         btnRow.add(buyPdf);

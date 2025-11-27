@@ -186,12 +186,34 @@ public class JavaScriptBook {
         card.add(price);
 
         card.add(Box.createVerticalStrut(12));
+        // Quantity selection
+        JPanel quantityPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
+        quantityPanel.setOpaque(false);
+        quantityPanel.add(new JLabel("Quantité:"));
+        JSpinner quantitySpinner = new JSpinner(new SpinnerNumberModel(1, 1, 10, 1));
+        quantitySpinner.setPreferredSize(new Dimension(60, 25));
+        quantityPanel.add(quantitySpinner);
+        card.add(quantityPanel);
+        card.add(Box.createVerticalStrut(12));
+
         JPanel btnRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
         btnRow.setOpaque(false);
 
         JButton buy = styledPrimaryButton("Acheter ");
         JButton buyPdf = styledSecondaryButton("Acheter PDF");
         JButton share = styledSecondaryButton("🔗 Partager");
+
+        // Add action listener to buy button
+        buy.addActionListener(e -> {
+            int quantity = (Integer) quantitySpinner.getValue();
+            String priceText = price.getText().replace(" DA", "").trim();
+            double unitPrice = Double.parseDouble(priceText);
+            double total = unitPrice * quantity;
+            JOptionPane.showMessageDialog(null,
+                "Total de votre commande: " + String.format("%.0f", total) + " DA\nQuantité: " + quantity,
+                "Confirmation d'achat",
+                JOptionPane.INFORMATION_MESSAGE);
+        });
 
         btnRow.add(buy);
         btnRow.add(buyPdf);
