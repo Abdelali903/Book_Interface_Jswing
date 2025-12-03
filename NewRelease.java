@@ -99,12 +99,12 @@ public class NewRelease {
         grid.setOpaque(false);
 
         List<Book> sample = Arrays.asList(
-            new Book("Anna's Friend", "A. Mathematician", "1200 DA", "book.png"),
-            new Book("Numirical Analytics", "C. Programmer", "2000 DA", "math/NumericalAnalysis.jpg"),
-            new Book("Princip Of Physics", "D. Scientist", "1500 DA", "physics/PrincipOfPhysics.jpg"),
-            new Book("Sahih El Boukhari", "Imame Boukhari", "9900 DA", "islamic/Boukhari.jpg"),
-            new Book("Data Structures", "F. Engineer", "1800 DA", "algo/DataStructures.jpg"),
-            new Book("Organic Chemistry", "G. Researcher", "1400 DA", "chemistry/OrganicChemistry.jpg")
+            new Book("E_commece Essentials", "by Jhon Ilpoulous", "600 DA", "BooksImg\\\\\\\\ImgE_commerce/E_commeceEssentials.jpg"),
+            new Book("Numerical Analysis", "C. Programmer", "2000 DA", "BooksImg\\\\ImgMath/NumericalAnalysis.jpg"),
+            new Book("Princip Of Physics", "D. Scientist", "1500 DA", "BooksImg\\\\ImgPhysics/PrincipOfPhysics.jpg"),
+            new Book("Sahih El Boukhari", "Imame Boukhari", "9900 DA", "BooksImg\\\\ImgIslamic/Boukhari.jpg"),
+            new Book("Data Structures", "F. Engineer", "1800 DA", "BooksImg\\\\ImgAlgo/DataStructures.jpg"),
+            new Book("Organic Chemistry", "G. Researcher", "1400 DA", "BooksImg\\\\ImgChemistry/OrganicChemistry.jpg")
         );
 
         for (Book b : sample) grid.add(createBookCard(b, frame));
@@ -164,9 +164,34 @@ public class NewRelease {
         buy.setBorder(BorderFactory.createEmptyBorder(6, 12, 6, 12));
         buy.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         buy.addActionListener(e -> {
-            frame.dispose();
-            AquidatElTawhidBook.main(new String[]{});
-        });
+            if("E_commece Essentials".equals(book.title)) {
+                frame.dispose();
+                E_commerceEssentialsBook.main(new String[]{});
+            }
+           else if("Numerical Analysis".equals(book.title)) {
+                    frame.dispose();
+                    NumericalAnalysisBook.main(new String[]{});
+            }
+            else if("Princip Of Physics".equals(book.title)) {
+                    frame.dispose();
+                    PrincipOfPhysicsBook.main(new String[]{});
+            }
+            else if("Sahih El Boukhari".equals(book.title)) {
+                    frame.dispose();
+                    BoukhariBook.main(new String[]{});
+            }
+            else if("Data Structures".equals(book.title)) {
+                frame.dispose();
+                DataStructuresBook.main(new String[]{});
+            }
+            else if("Organic Chemistry".equals(book.title)) {
+                frame.dispose();
+                OrganicChemistryBook.main(new String[]{});
+            }
+            else {
+                frame.dispose();
+            }
+    });
         bottom.add(buy);
 
         card.add(bottom);
@@ -175,8 +200,33 @@ public class NewRelease {
         card.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if("E_commece Essentials".equals(book.title)) {
                 frame.dispose();
-                AquidatElTawhidBook.main(new String[]{});
+                E_commerceEssentialsBook.main(new String[]{});
+                }
+                else if("Numerical Analysis".equals(book.title)) {
+                    frame.dispose();
+                    NumericalAnalysisBook.main(new String[]{});
+                }
+                else if("Princip Of Physics".equals(book.title)) {
+                    frame.dispose();
+                    PrincipOfPhysicsBook.main(new String[]{});
+                }
+                else if("Sahih El Boukhari".equals(book.title)) {
+                    frame.dispose();
+                    BoukhariBook.main(new String[]{});
+                }
+                else if("Data Structures".equals(book.title)) {
+                frame.dispose();
+                DataStructuresBook.main(new String[]{});
+                }
+                else if("Organic Chemistry".equals(book.title)) {
+                frame.dispose();
+                OrganicChemistryBook.main(new String[]{});
+                }
+                else {
+                    frame.dispose();
+                }
             }
         });
 
